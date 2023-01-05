@@ -46,7 +46,11 @@ const style = StyleSheet.create({
         alignItems: 'center',
         height: 35
     },
-    text: { color: '#FFF', fontWeight: 'bold', fontSize: 14 }
+    text: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 14
+    }
 })
 
 export default ActionButton

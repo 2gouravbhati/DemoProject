@@ -2,7 +2,6 @@ import { View, StyleSheet, Image, Text } from 'react-native'
 import React from 'react'
 import ActionButton from './ActionButton'
 
-
 interface PostCard {
     post_height: number,
     post: any
@@ -13,13 +12,7 @@ export default function PostCard(props: PostCard) {
     const { image, userName, isFollowing, userId } = props.post
     return (
         <View style={{ height: props.post_height }}>
-            <View style={{
-                height: 50,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingHorizontal: 10
-            }}>
+            <View style={style.row_container}>
                 <Text style={style.heading}>{userName}</Text>
                 <ActionButton
                     isFollowing={isFollowing}
@@ -34,11 +27,14 @@ export default function PostCard(props: PostCard) {
     )
 }
 
-
-
-
-
 const style = StyleSheet.create({
+    row_container: {
+        height: 50,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10
+    },
     image: {
         flex: 1,
         backgroundColor: 'gray'

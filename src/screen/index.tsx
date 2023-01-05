@@ -1,4 +1,4 @@
-import { View, Text, Dimensions, FlatList } from 'react-native'
+import { Dimensions } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import PostCard from './PostCard'
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
@@ -7,7 +7,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview
 const posts = require('../data/index.json');
 const { height, width } = Dimensions.get('window');
 const POST_SIZE = height * 0.35;
-const POST_PER_BATCH = 10;
+const POST_PER_BATCH = 15;
 
 export default function index() {
     const savedPosts = useRef<any>();
@@ -30,7 +30,7 @@ export default function index() {
     }, []);
 
     const getPosts = (index: number) => {
-        const arr = index == 0 ? savedPosts.current[0] : visiblePosts.current.concat(savedPosts.current[0]);
+        const arr = index == 0 ? savedPosts.current[0] : visiblePosts.current.concat(savedPosts.current[index]);
         setDataProvider(dataProvider.cloneWithRows(arr));
         visiblePosts.current = arr;
         activeIndex.current = index
@@ -51,7 +51,7 @@ export default function index() {
         }
     }
 
-    const renderPosts = (type: string, item: any, index: number) => {
+    const renderPosts = (type: string | number, item: any, index: number) => {
         return <PostCard
             post={item}
             post_height={POST_SIZE}
